@@ -1,5 +1,7 @@
---setup the monitor
-display=peripheral.wrap("monitor_0")
+--setup the displays
+displays={}
+displays[1]=peripheral.wrap("back")
+displays[2]=peripheral.wrap("right")
  
 --set up wrappers for each tank
 tanks={}
@@ -21,17 +23,16 @@ local essentia = {}
    return essentia
 end
  
-function printHeader()
+function printHeader(display)
    display.clear()
    display.setCursorPos(1,1)
    display.setTextColor(colors.blue)
    display.write("Essentia Resevoir Monitor 1.0")
 end
  
-function printData(data)
-  print("printData Entered ")
+function printData(data, display)
   display.setTextColor(colors.white)
-  myrow=2
+  local myrow=2
   display.setCursorPos(1,2)
   for ess,val in pairs(data) do
       label=string.sub(ess, 1, 3)
@@ -42,9 +43,27 @@ function printData(data)
    end
 end
  
+function printFooter(display)
+        print ("run: "..run)
+        w,h = display.getSize()
+        display.setCursorPos(1,h)
+        display.setTextColor(colors.green)
+        display.write("Monitoring: "..running[ run%3 ])
+end
+ 
+run=1
+running={}
+running[0]="-"
+running[1]="/"
+running[2]="|"
+ 
 while true do
    data=measureTanks()
-   printHeader()
-   printData(data)
+   for i,display in pairs(displays) do
+      printHeader(display)
+      printData(data,display)
+      printFooter(display)
+   end
    sleep(1)
+   run=run+1
 end
