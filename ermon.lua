@@ -37,7 +37,7 @@ function printData(data, display)
   for ess,val in pairs(data) do
       label=string.sub(ess, 1, 3)
       print(" datas : "..label..": "..val)
-      display.write(label..": "..val)
+      display.write(ess..": "..val)
       myrow=myrow+1
       display.setCursorPos(1,myrow)
    end
