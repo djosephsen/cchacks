@@ -3,14 +3,22 @@
 mc="minecraft:"
 wc="witchery:ingredient"
 
+-- add new recipes here
+recipes={
+	mutandis{wc,22},{wc,31},{mc.."egg",0}
+}
+
 function findAndDrop(name,itemID)
+	found=false
 	while getThingy() do
 		n = turtle.getItemDetail().name
 		d = turtle.getItemDetail().damage
-		print("comparing "..name.." to "..n)
+		--print("comparing "..name.." to "..n)
 		if name == n then
 			print("name match, comparing id "..d.." to "..itemID)
 			if itemID == d then
+				print("dropping in "..name)
+				found=true
 				turtle.dropDown(1)
 				putThingy()
 			else 
@@ -20,6 +28,9 @@ function findAndDrop(name,itemID)
 			putThingy()
 		end
 	end
+	if not found then
+		print("Missing ingredient: "..name..":"..itemID)
+		os.exit()
 end
 
 function findInput()
@@ -36,9 +47,11 @@ function findInput()
 	end
 end
 
-ingredients={{wc,22},{wc,31},{mc.."egg",0}}
-for k,v in pairs(ingredients) do
-	findInput()
-	findAndDrop(v[1], v[2])
-	sleep(0)
+function brew 
+	for k,v in pairs(ingredients) do
+		findInput()
+		findAndDrop(v[1], v[2])
+		sleep(0)
+	end
 end
+
