@@ -4,9 +4,7 @@ mc="minecraft:"
 wc="witchery:ingredient"
 
 -- add new recipes here
-recipes={
-	mutandis{wc,22},{wc,31},{mc.."egg",0}
-}
+recipes["mutandis"]={{wc,22},{wc,31},{mc.."egg",0}}
 
 function findAndDrop(name,itemID)
 	found=false
@@ -48,10 +46,14 @@ function findInput()
 end
 
 function brew 
-	for k,v in pairs(ingredients) do
-		findInput()
-		findAndDrop(v[1], v[2])
-		sleep(0)
+	for k,recipe in pairs(recipes) do
+		for k,ingredient in pairs(recipe) do
+			name=ingredient[1]
+			itemID=ingredient[2]
+			findInput()
+			findAndDrop(v[1], v[2])
+			sleep(0)
+		end
 	end
 end
 
