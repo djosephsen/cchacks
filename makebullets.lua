@@ -52,7 +52,7 @@ function make_bullets(dslot)
 end
 
 empty_destination_slot = find_empty_dest()
-while empty_destination_slot != nil do
+while (empty_destination_slot != nil) do
 	make_bullets(empty_destination_slot)
 	empty_destination_slot = find_empty_dest()
 end
