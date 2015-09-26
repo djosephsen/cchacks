@@ -4,7 +4,7 @@ local sides=require("sides")
 local c=component.crafting
 local i=component.inventory_control
 
-recipe={{label="Lead Ingot",slots={2},
+recipe={{label="Lead Ingot",slots={2}}, 
 			label="Gunpowder",slots={6,10}}
 chests={input=sides.top, 
 			output=sides.bottom}
