@@ -14,9 +14,11 @@ function find_empty_dest()
 	for slot=1,i.getInventorySize(output_chest) do
 		count=i.getSlotStackSize(output_chest, slot)
 		if count == 0 then
+			print("found empty space in ",slot)
 			return slot
 		end
 	end
+	print("no empty space found")
 	return nil
 end
 
