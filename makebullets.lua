@@ -26,9 +26,9 @@ end
 function find_by_label(label)
 	for slot=1,i.getInventorySize(chests.input) do
    	print("looking for ",label, " in slot ",slot)
-		item = i.getStackInSlot(chests.input,slot)
-		if item ~= nil then
-			if item.label == label then
+		thing = i.getStackInSlot(chests.input,slot)
+		if thing ~= nil then
+			if thing.label == label then
 				print("found ",label," in slot ",slot)
 				return slot
 			end
