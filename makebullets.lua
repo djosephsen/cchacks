@@ -2,7 +2,7 @@ local robot=require("robot")
 local component=require("component")
 local sides=require("sides")
 local c=component.crafting
-local i=component.inventory_control
+local i=component.inventory_controller
 
 recipe={{label="Lead Ingot",slots={2}}, 
 			label="Gunpowder",slots={6,10}}
