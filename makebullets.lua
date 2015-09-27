@@ -25,9 +25,13 @@ end
 -- find an ingredient in the input chest given its description
 function find_by_label(label)
 	for slot=1,i.getInventorySize(chests.input) do
-		item=i.getStackInSlot(chests.input,slot)
-		if item.label == label then
-			return slot
+   	print("looking for ",label, " in slot ",slot)
+		item = i.getStackInSlot(chests.input,slot)
+		if item.label ~= nil then
+			if item.label == label then
+				print("found ",label," in slot ",slot)
+				return slot
+			end
 		end
 	end
 end
@@ -53,8 +57,9 @@ function make_bullets(dslot)
 	i.dropIntoSlot(chests.output,dslot)
 end
 
+print("looking for empty space")
 empty_destination_slot = find_empty_dest()
-while empty_destination_slot ~= nil do
-	make_bullets(empty_destination_slot)
-	empty_destination_slot = find_empty_dest()
-end
+print("trying to make bullets")
+make_bullets(empty_destination_slot)
+--while empty_destination_slot ~= nil do
+--end
