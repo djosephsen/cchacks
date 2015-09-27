@@ -11,8 +11,8 @@ chests={input=sides.top,
 
 -- find an empty spot in the output chest
 function find_empty_dest()
-	for slot=1,i.getInventorySize(output_chest) do
-		count=i.getSlotStackSize(output_chest, slot)
+	for slot=1,i.getInventorySize(chests.output) do
+		count=i.getSlotStackSize(chests.output, slot)
 		if count == 0 then
 			print("found empty space in ",slot)
 			return slot
@@ -24,8 +24,8 @@ end
 
 -- find an ingredient in the input chest given its description
 function find_by_label(label)
-	for slot=1,i.getInventorySize(input_chest) do
-		item=i.getStackInSlot(input_chest,slot)
+	for slot=1,i.getInventorySize(chests.input) do
+		item=i.getStackInSlot(chests.input,slot)
 		if item.label == label then
 			return slot
 		end
